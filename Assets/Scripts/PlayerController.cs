@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private Vector3 OriginalPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
         count = 0;
 
         SetCountText();
-
+        OriginalPosition = transform.position;
         winTextObject.SetActive(false);
     }
 
@@ -73,9 +74,13 @@ public class PlayerController : MonoBehaviour
        }   
        
        if (other.gameObject.CompareTag("Enemy")) {
-        
-       other.gameObject.transform.position=new Vector4(0,5,4);
-       }
+
+            other.gameObject.transform.position = new Vector4(0, 5, 4);
+
             
+           transform.position = OriginalPosition;
+
+        }
+
     }
   }
